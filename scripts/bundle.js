@@ -111,6 +111,10 @@ function Kicking(name, team) {
     };
 }
 
+function displayTable() {
+    $('#player-info').html('<td>' + this.type + '</td><td>' + this.name + '</td><td>' + this.team + '</td>');
+}
+
 var romo = new Quarterback('Antonio Romo', 'Dallas Cowboys');
 romo.addAttempt('complete', 12);
 romo.addAttempt('sack', -5);
@@ -160,6 +164,41 @@ bags.addAttempt('made', 44);
 bags.addAttempt('missed', 59);
 bags.longestFieldGoal;
 bags.fieldGoalPercentage();
+
+var quarterbacks = [new Quarterback('Antonio Romo', 'Dallas Cowboys'), new Quarterback('Bluto from Popeye', 'Comic Book Caper Shakers')];
+
+var $table = $('<table />');
+var $thead = $('<thead />');
+var $tbody = $('<tbody />');
+
+$table.append($thead);
+$table.append($tbody);
+
+var $tr = $('<tr><th>Name</th><th>Team</th><th>Attempts</th><th>Completions</th><th>Yards</th><th>Touchdowns</th><th>Interceptions</th><th>Sacks</th><th>Longest</th><th>Yards/Attempt</th>');
+
+$thead.append($tr);
+
+$('section').html($table);
+
+// want to generate a table and code
+function buildTableBody(qbs, $tableBody) {
+    $tableBody.empty();
+    for (var i = 0; i < qbs.length; i++) {
+        var $tr = $('<tr />');
+        var $name = $('<td />', { text: qbs[i].name });
+        var $team = $('<td />', { text: qbs[i].team });
+        var $attempts = $('<td />', { text: qbs[i].attempts });
+        var $completions = $('<td />', { text: qbs[i].completions });
+        var $yards = $('<td />', { text: qbs[i].totalYards });
+        var $td = $('<td />', { text: qbs[i].touchdowns });
+        var $sacks = $('<td />', { text: qbs[i].sacks });
+        var $longest = $('<td />', { text: qbs[i].longestCompletion });
+        var $yardsPerAttempt = $('<td />', { text: qbs[i].yardsPerAttempt() });
+
+        $tr.append($name).append($team).append($attempts).append($completions).append($yards).append($td).append($sacks).append($longest).append($yardsPerAttempt);
+        $tableBody.append($tr);
+    }
+}
 
 },{}]},{},[1])
 
