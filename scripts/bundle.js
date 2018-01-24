@@ -202,5 +202,4 @@ function buildTableBody(qbs, $tableBody) {
 
 },{}]},{},[1])
 
-
 //# sourceMappingURL=bundle.js.map
